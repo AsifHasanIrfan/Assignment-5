@@ -1,4 +1,5 @@
 //event listener function //
+const searchError = document.getElementById('searchError');
 const showFood = document.getElementById('showFood');
 const foodSearch = document.getElementById('foodSearch');
 const searchBtn = document.getElementById('searchBtn');
@@ -13,7 +14,7 @@ function getFoodName(foodName) {
             return res.json();
         })
         .then(data => {
-            console.log(data);
+            let error = '';
             let html = '';
             if(data.meals){
                 data.meals.forEach(food => {
@@ -29,9 +30,9 @@ function getFoodName(foodName) {
                     `;
                 })
             }else{
-                html = "Sorry, we didn't find any food.";
+                error = `<h5>Sorry, we didn't find any food.</h5>`
             }
-
+            searchError.innerHTML = error
             showFood.innerHTML = html
         })
 }
@@ -43,8 +44,7 @@ function getFoodDetail (id) {
     .then(data => foodDetails(data.meals[0]))
 }
 
-function foodDetails(food) {
-    console.log(food);
+const foodDetails = (food) => {
     const foodDetail = document.getElementById('foodDetail');
     foodDetail.innerHTML = `
             <div class="card mb-3 food-detail">
@@ -69,3 +69,4 @@ function foodDetails(food) {
             </div>
           `;
 }
+
