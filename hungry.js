@@ -9,7 +9,15 @@ searchBtn.addEventListener('click', () => {
 
 // get Food Name function //
 function getFoodName(foodName) {
-    fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${foodName}`)
+    document.getElementById('foodDetail').innerHTML ='';
+    if(foodName == ''){
+        errorHtml =`
+            <h5>Please enter a food name first.</h5>
+        `;
+        searchError.innerHTML = errorHtml;
+    }
+    else{
+        fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${foodName}`)
         .then(res => {
             return res.json();
         })
@@ -35,6 +43,8 @@ function getFoodName(foodName) {
             searchError.innerHTML = error
             showFood.innerHTML = html
         })
+    }
+    
 }
 
 // food details api call //
@@ -69,4 +79,3 @@ const foodDetails = (food) => {
             </div>
           `;
 }
-
