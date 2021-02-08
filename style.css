@@ -1,0 +1,15 @@
+body{
+    background-color: #F7DC6F;
+}
+.form-control{
+    width: 500px;
+    height: 50px;
+}
+.btn{
+    background-color: #2B2D6D;
+    color: white;
+    border: none;
+}
+/* .foodDetail{
+    display: none;
+} */
